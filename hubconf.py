@@ -53,43 +53,43 @@ def loss_fun(y_pred, y_ground):
   return v
 
 class cs19b045cnn(nn.Module):
-    def __init__(self, param):
-	super().__init__()
-	self.param=param
-	self.conv1 = nn.Conv2d(in_channels=param[1][0], 
-			       out_channels=param[1][1], 
-			       kernel_size=param[1][2], 
-			       stride=param[1][3], 
-			       padding=param[1][4])
-	self.conv2 = nn.Conv2d(in_channels=param[2][0], 
-			       out_channels=param[2][1], 
-			       kernel_size=param[2][2], 
-			       stride=param[2][3], 
-			       padding=param[2][4])
-	self.relu1 = nn.ReLU()
-	self.relu2 = nn.ReLU()
-	self.flatten = nn.Flatten()
-	self.fc1 = nn.Linear(in_features=self.fc_nodes_calc(), out_features=num_classes)
-	self.m = nn.Softmax(dim =1)
+	def __init__(self, param):
+		super().__init__()
+		self.param=param
+		self.conv1 = nn.Conv2d(in_channels=param[1][0], 
+				       out_channels=param[1][1], 
+				       kernel_size=param[1][2], 
+				       stride=param[1][3], 
+				       padding=param[1][4])
+		self.conv2 = nn.Conv2d(in_channels=param[2][0], 
+				       out_channels=param[2][1], 
+				       kernel_size=param[2][2], 
+				       stride=param[2][3], 
+				       padding=param[2][4])
+		self.relu1 = nn.ReLU()
+		self.relu2 = nn.ReLU()
+		self.flatten = nn.Flatten()
+		self.fc1 = nn.Linear(in_features=self.fc_nodes_calc(), out_features=num_classes)
+		self.m = nn.Softmax(dim =1)
 
-    def forward(self, x):
-        x = self.conv1(x)
-        x = self.relu1(x)
-        x = self.conv2(x)
-        x = self.relu2(x)
-        x = self.flatten(x)
-        x = self.fc1(x)
-        x = self.m(x)
-        return x
+	def forward(self, x):
+		x = self.conv1(x)
+		x = self.relu1(x)
+		x = self.conv2(x)
+		x = self.relu2(x)
+		x = self.flatten(x)
+		x = self.fc1(x)
+		x = self.m(x)
+		return x
 
-    def fc_nodes_calc(self):
-      new_w = self.param[0][1]
-      new_h = self.param[0][2]
-      for i in range(conv_layers):
-        new_w = (new_w - self.param[i+1][2][0] + 1)/self.param[i+1][3]
-        new_h = (new_h - self.param[i+1][2][1] + 1)/self.param[i+1][3]
-      size = int(self.param[conv_layers][1] * new_w * new_h)
-      return size
+	def fc_nodes_calc(self):
+	      new_w = self.param[0][1]
+	      new_h = self.param[0][2]
+	      for i in range(conv_layers):
+		new_w = (new_w - self.param[i+1][2][0] + 1)/self.param[i+1][3]
+		new_h = (new_h - self.param[i+1][2][1] + 1)/self.param[i+1][3]
+	      size = int(self.param[conv_layers][1] * new_w * new_h)
+	      return size
     
 def get_model(train_loader,param,e = 10):
 	model = cs19b045cnn(param)
