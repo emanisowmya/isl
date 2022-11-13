@@ -55,6 +55,7 @@ def loss_fun(y_pred, y_ground):
 class cs19b045cnn(nn.Module):
     def __init__(self, param):
         super().__init__()
+	self.param=param
         self.conv1 = nn.Conv2d(in_channels=param[1][0], 
                                out_channels=param[1][1], 
                                kernel_size=param[1][2], 
@@ -82,12 +83,12 @@ class cs19b045cnn(nn.Module):
         return x
 
     def fc_nodes_calc(self):
-      new_w = param[0][1]
-      new_h = param[0][2]
+      new_w = self.param[0][1]
+      new_h = self.param[0][2]
       for i in range(conv_layers):
-        new_w = (new_w - param[i+1][2][0] + 1)/param[i+1][3]
-        new_h = (new_h - param[i+1][2][1] + 1)/param[i+1][3]
-      size = int(param[conv_layers][1] * new_w * new_h)
+        new_w = (new_w - self.param[i+1][2][0] + 1)/self.param[i+1][3]
+        new_h = (new_h - self.param[i+1][2][1] + 1)/self.param[i+1][3]
+      size = int(self.param[conv_layers][1] * new_w * new_h)
       return size
     
 def get_model(train_loader,param,e = 10):
