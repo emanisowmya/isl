@@ -115,7 +115,7 @@ def train_network2(train_loader,model1,optimizer,criteria, e):
 
   print('Finished Training')
   
-def test2(dataloader, model, loss_fn):
+def test2(dataloader, model1, loss_fn):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
     model.eval()
