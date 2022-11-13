@@ -54,23 +54,23 @@ def loss_fun(y_pred, y_ground):
 
 class cs19b045cnn(nn.Module):
     def __init__(self, param):
-        super().__init__()
+	super().__init__()
 	self.param=param
-        self.conv1 = nn.Conv2d(in_channels=param[1][0], 
-                               out_channels=param[1][1], 
-                               kernel_size=param[1][2], 
-                               stride=param[1][3], 
-                               padding=param[1][4])
-        self.conv2 = nn.Conv2d(in_channels=param[2][0], 
-                               out_channels=param[2][1], 
-                               kernel_size=param[2][2], 
-                               stride=param[2][3], 
-                               padding=param[2][4])
-        self.relu1 = nn.ReLU()
-        self.relu2 = nn.ReLU()
-        self.flatten = nn.Flatten()
-        self.fc1 = nn.Linear(in_features=self.fc_nodes_calc(), out_features=num_classes)
-        self.m = nn.Softmax(dim =1)
+	self.conv1 = nn.Conv2d(in_channels=param[1][0], 
+			       out_channels=param[1][1], 
+			       kernel_size=param[1][2], 
+			       stride=param[1][3], 
+			       padding=param[1][4])
+	self.conv2 = nn.Conv2d(in_channels=param[2][0], 
+			       out_channels=param[2][1], 
+			       kernel_size=param[2][2], 
+			       stride=param[2][3], 
+			       padding=param[2][4])
+	self.relu1 = nn.ReLU()
+	self.relu2 = nn.ReLU()
+	self.flatten = nn.Flatten()
+	self.fc1 = nn.Linear(in_features=self.fc_nodes_calc(), out_features=num_classes)
+	self.m = nn.Softmax(dim =1)
 
     def forward(self, x):
         x = self.conv1(x)
