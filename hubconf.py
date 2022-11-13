@@ -99,7 +99,7 @@ def train_network2(train_loader, optimizer,criteria, e):
         optimizer.zero_grad()
         outputs = model(inputs)
         tmp = torch.nn.functional.one_hot(labels, num_classes= 10)
-        loss = criteria(outputs, tmp)oo
+        loss = criteria(outputs, tmp)
         loss.backward()
         optimizer.step()
         running_loss += loss.item()
