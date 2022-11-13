@@ -96,7 +96,7 @@ def get_model(train_loader,param,e = 10):
 	model = cs19b045cnn(param)
 	return model
 
-def train_network2(train_loader,model, optimizer,criteria, e):
+def train_network2(train_loader, optimizer,criteria, e):
   for epoch in range(e): 
 
     running_loss = 0.0
