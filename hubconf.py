@@ -118,13 +118,13 @@ def train_network2(train_loader,model1,optimizer,criteria, e):
 def test2(dataloader, model1, loss_fn):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
-    model.eval()
+    model1.eval()
     test_loss, correct = 0, 0
     with torch.no_grad():
         for X, y in dataloader:
             #X, y = X.to(device), y.to(device)
             tmp = torch.nn.functional.one_hot(y, num_classes= 10)
-            pred = model(X)
+            pred = model1(X)
             test_loss += loss_fn(pred, tmp).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
     test_loss /= num_batches
