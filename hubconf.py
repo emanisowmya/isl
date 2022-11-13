@@ -35,7 +35,7 @@ def load_data():
     return training_data, test_data
   
   
-  def create_dataloaders(training_data, test_data, batch_size=64):
+def create_dataloaders(training_data, test_data, batch_size=64):
 
     train_dataloader = DataLoader(training_data, batch_size=batch_size)
     test_dataloader = DataLoader(test_data, batch_size=batch_size)
@@ -47,7 +47,7 @@ def load_data():
         
     return train_dataloader, test_dataloader
   
-  def loss_fun(y_pred, y_ground):
+def loss_fun(y_pred, y_ground):
   v = -(y_ground * torch.log(y_pred + 0.0001))
   v = torch.sum(v)
   return v
