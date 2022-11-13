@@ -92,9 +92,6 @@ class cs19b045cnn(nn.Module):
     
 def get_model(train_loader,param,e = 10):
 	model = cs19b045cnn(param)
-	optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-	criteria = loss_fun
-	train_network(train_loader, optimizer,criteria,e)
 	return model
 
 def train_network2(train_loader, optimizer,criteria, e):
