@@ -96,14 +96,14 @@ def get_model(train_loader,param,e = 10):
 	model = cs19b045cnn(param)
 	return model
 
-def train_network2(train_loader,model,optimizer,criteria, e):
+def train_network2(train_loader,model1,optimizer,criteria, e):
   for epoch in range(e): 
 
     running_loss = 0.0
     for i, data in enumerate(train_loader, 0):
         inputs, labels = data
         optimizer.zero_grad()
-        outputs = model(inputs)
+        outputs = model1(inputs)
         tmp = torch.nn.functional.one_hot(labels, num_classes= 10)
         loss = criteria(outputs, tmp)
         loss.backward()
